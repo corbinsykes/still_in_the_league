@@ -1,0 +1,230 @@
+// Colors
+$white: #fff;
+$green: #2ecc71;
+$red: #e74c3c;
+$transparent: rgba(0, 0, 0, 0);
+$black-translucent: rgba(0, 0, 0, 0.4);
+$black-translucent--dark: rgba(0, 0, 0, 0.9);
+$white-translucent: rgba(255, 255, 255, 0.15);
+$gray: #91a0ad;
+$gray--light: #dee2e6;
+$gray--dark: #2b313a;
+
+//Transitions
+$transition-timing: 218ms;
+
+// Breakpoints
+$breakpoint-0: 400px;
+$breakpoint-1: 625px;
+$breakpoint-2: 850px;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 80rem;
+    background-image: url('http://cdn.wallpapersafari.com/99/38/5Jxu6y.jpg');
+    background-size: (100% / 3);
+
+    @media (min-width: $breakpoint-1) {
+        padding: 2rem;
+    }
+
+    @media (min-width: $breakpoint-2) {
+        padding: 3rem;
+    }
+}
+
+.title {
+    font-size: 2rem;
+    text-shadow: 0 0 1rem $black-translucent--dark;
+    font-weight: 900;
+    color: $white;
+
+    @media (min-width: $breakpoint-1) {
+        font-size: 3rem;
+        text-shadow: 0 0 1.5rem $black-translucent--dark;
+    }
+
+    @media (min-width: $breakpoint-2) {
+        font-size: 4rem;
+        text-shadow: 0 0 2rem $black-translucent--dark;
+    }
+}
+
+.players {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 2rem 0;
+
+    @media (min-width: $breakpoint-1) {
+        margin: 0;
+        flex-direction: row;
+    }
+}
+
+.player {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+
+    & + & {
+        margin-top: 1rem;
+    }
+
+    @media (min-width: $breakpoint-1) {
+        & + & {
+            margin-top: 0;
+            margin-left: 2rem;
+        }
+    }
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    height: 50vh;
+    background-color: $white;
+    border: 4px solid $white;
+    transition: border-color $transition-timing ease;
+
+    &.is-right {
+        border-color: $green;
+    }
+
+    &.is-wrong {
+        border-color: $red;
+    }
+
+    @media (min-width: $breakpoint-1) {
+        flex: 1;
+        width: 100%;
+    }
+}
+
+.headshot {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: $gray--light;
+    background-position: center center;
+    background-size: cover;
+    cursor: pointer;
+
+    &:hover {
+        .guess {
+            background-color: $black-translucent;
+            z-index: 2;
+        }
+    }
+}
+
+.guess,
+.answer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: $black-translucent;
+}
+
+.answer {
+    z-index: 2;
+
+    .option {
+        background-color: $black-translucent;
+    }
+}
+
+.guess {
+    background-color: $transparent;
+    z-index: -1;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    width: 100%;
+    padding: 1.5rem;
+    color: white;
+    font-size: 1.5rem;
+    line-height: 1.875rem;
+    text-align: center;
+    transition: background-color $transition-timing ease;
+
+    &:hover {
+        background-color: $black-translucent;
+    }
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 5rem;
+    width: 100%;
+    margin-top: 0.25rem;
+    padding: 0.5rem;
+
+    @media (min-width: $breakpoint-2) {
+        min-height: auto;
+        padding: 0.75rem;
+    }
+}
+
+.name,
+.height {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.name {
+    p {
+        color: $gray--dark;
+    }
+}
+
+.height {
+    margin-top: 0.5rem;
+
+    p {
+        color: $gray;
+    }
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 20rem;
+    background-color: $transparent;
+    color: $white;
+    border: 4px solid $white;
+    text-shadow: 0 0 1.5rem $black-translucent--dark;
+    font-size: 1.25rem;
+    font-weight: 900;
+    font-family: 'Fira Sans', sans-serif;
+    outline: 0;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1.75px;
+    transition: background-color $transition-timing ease;
+
+    &:hover {
+        background-color: $white-translucent;
+    }
+}

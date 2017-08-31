@@ -1,0 +1,84 @@
+<div class="container">
+    <header>
+        <h1 class="title">Is He Still In The League?</h1>
+    </header>
+    <div class="players">
+        <div
+            class="player"
+            *ngFor="let player of players">
+            <div
+                class="card"
+                [ngClass]="{
+                    'is-right': player.isCorrect,
+                    'is-wrong': player.isIncorrect
+                }">
+                <div
+                    class="headshot"
+                    [style.backgroundImage]="'url(' + player.imgURL + ')'">
+
+                    <div
+                        class="guess"
+                        *ngIf="!(player.isCorrect || player.isIncorrect)">
+                        <div
+                            class="option"
+                            (click)="guess(player, true)">
+                            <span>Yes</span>
+                        </div>
+                        <div
+                            class="option"
+                            (click)="guess(player, false)">
+                            <span>No</span>
+                        </div>
+                    </div>
+
+                    <div
+                        class="answer"
+                        *ngIf="player.isCorrect || player.isIncorrect">
+
+                        <div
+                            class="option"
+                            *ngIf="player.isCorrect && player.tid !== -1">
+                            <span>Correct! {{player.name}} is on the {{teamList[player.tid].name}}.</span>
+                        </div>
+
+                        <div
+                            class="option"
+                            *ngIf="player.isCorrect && player.tid === -1">
+                            <span>Yup, he's out the league.</span>
+                        </div>
+
+                        <div
+                            class="option"
+                            *ngIf="player.isIncorrect && player.tid !== -1">
+                            <span>{{player.name}} is still in the league! He's on the {{teamList[player.tid].name}}.</span>
+                        </div>
+
+                        <div
+                            class="option"
+                            *ngIf="player.isIncorrect && player.tid === -1">
+                            <span>Wrong! He's out the league.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="name">
+                        <p>{{player.name}}</p>
+                        <p>{{player.pos}}</p>
+                    </div>
+
+                    <div class="height">
+                        <p>{{player.college}}</p>
+                        <p>{{convertInches(player.hgt)}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <button
+            class="button"
+            (click)="reset()">
+            <span>Try Again</span>
+        </button>
+    </footer>
+</div>
